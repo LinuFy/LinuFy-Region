@@ -16,6 +16,8 @@ def parse(container_output):
 	task = None
 
 	for line in container_output:
+		if os.getenv('DEBUG'):
+			print(line)
 		if line['event'] == 'playbook_on_task_start':
 			event  = re.findall('\[(.*?)\]', line['stdout'])[0]
 		elif line['event'] == 'runner_on_ok' or line['event'] == 'runner_on_unreachable':

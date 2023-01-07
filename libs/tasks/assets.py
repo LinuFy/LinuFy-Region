@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from os import getenv
 
 from .ansible import *
 from .rest_client import RestClient
@@ -34,7 +35,8 @@ def base_refresh():
 			'memory_total': ansible_result[asset]['Memory Total']['result'],
 			'cpu_usage': ansible_result[asset]['CPU Usage']['result'],
 			'kernel_version': ansible_result[asset]['Kernel']['result'],
-                        'process_usage': ansible_result[asset]['Process Usage']['result']
+      'process_usage': ansible_result[asset]['Process Usage']['result'],
+      'bandwidth_interfaces': ansible_result[asset]['Bandwidth Interfaces']['result']
 		}
 		rest_client.put('assets/{}/meta'.format(asset, ), export)
 		rest_client.put('assets/{}/users'.format(asset, ), ansible_result[asset]['Users']['result'])
